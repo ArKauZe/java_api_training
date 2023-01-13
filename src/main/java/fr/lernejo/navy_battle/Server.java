@@ -42,7 +42,4 @@ public class Server {
         server.start();
         return server;
     }
-    public void StopServer(HttpServer server) {
-        server.stop(0);
-    }
 }
