@@ -1,5 +1,6 @@
 package fr.lernejo.navy_battle;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -28,6 +29,18 @@ public class LauncherTest {
         Assertions.assertThatThrownBy(() -> Launcher.main(new String[]{}))
             .isInstanceOf(ArrayIndexOutOfBoundsException.class)
             .hasMessage("Index 0 out of bounds for length 0");
+    }
+
+    @Test
+    void OneArgTest() throws IOException, InterruptedException {
+        Launcher.main(new String[]{"8888"});
+        assertTrue(true);
+    }
+
+    @Test
+    void TwoArgsTest() throws IOException, InterruptedException {
+        Launcher.main(new String[]{"9999", "http://localhost:9999"});
+        assertTrue(true);
     }
 
     @Test
