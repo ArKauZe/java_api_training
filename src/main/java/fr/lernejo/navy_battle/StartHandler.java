@@ -34,5 +34,7 @@ public class StartHandler implements HttpHandler {
         int myPort = fireHandler.parsePort(exchange.getRequestHeaders().getFirst("Host"));
         int adversaryPort = fireHandler.parseAdversaryPort(adversaryUrl);
         fireHandler.randomFire(myPort, adversaryPort);
+
     }
+
 }

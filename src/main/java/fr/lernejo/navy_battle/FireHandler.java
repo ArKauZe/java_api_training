@@ -76,6 +76,9 @@ public class FireHandler implements HttpHandler {
         } catch (Exception e) { body = "Error Bad Request"; exchange.sendResponseHeaders(400, body.length()); }
         Server server = new Server(); server.displayGrid(gameGrid);
         try (OutputStream os = exchange.getResponseBody()) { os.write(body.getBytes()); }
-        if (gameGrid.isShipLeft()) { this.randomFire(myPort, adversaryPort); }
+        while (gameGrid.isShipLeft()) {
+            randomFire(myPort, adversaryPort);
+            //try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
+        }
     }
 }

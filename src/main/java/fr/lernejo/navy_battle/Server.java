@@ -13,11 +13,12 @@ public class Server {
     }
 
     public void Miss(GameGrid gameGrid, int i, int j) {
-        System.out.print("\u001B[34m" + "." + "\u001B[0m  |  ");
+        System.out.print("\u001B[34m" + "0" + "\u001B[0m  |  ");
         gameGrid.getGrid()[i][j] = null;
     }
 
     public void displayGrid(GameGrid gameGrid) {
+        System.out.print("New Round\n");
         System.out.print(String.format("\033[H\033[2J"));
         for (int i = 0 ; i < 10 ; i++) {
             for (int j = 0 ; j < 10 ; j++) {
@@ -27,7 +28,7 @@ public class Server {
                 else if (element.getSlug().equals("hit")) { Hit(gameGrid, i, j); }
                 else { System.out.print(element.getSlug().toUpperCase().charAt(0) + "  |  "); }
             }
-            System.out.println();
+            System.out.print("\n");
         }
     }
 
