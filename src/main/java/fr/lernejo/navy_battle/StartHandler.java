@@ -25,10 +25,14 @@ public class StartHandler implements HttpHandler {
                 adversaryUrl = json.getString("url");
                 try (OutputStream os = exchange.getResponseBody()) { os.write(responseJson.toString().getBytes()); }
             } catch (Exception e) { exchange.sendResponseHeaders(400, -1); }
-            FireHandler fireHandler = new FireHandler(null);
-            int myPort = fireHandler.parsePort(exchange.getRequestHeaders().getFirst("Host"));
-            int adversaryPort = fireHandler.parseAdversaryPort(adversaryUrl);
-            fireHandler.randomFire(myPort, adversaryPort);
+            firstFire(exchange, adversaryUrl);
         } else { exchange.sendResponseHeaders(404, -1); }
+    }
+
+    public void firstFire(HttpExchange exchange, String adversaryUrl) throws IOException {
+        FireHandler fireHandler = new FireHandler(null);
+        int myPort = fireHandler.parsePort(exchange.getRequestHeaders().getFirst("Host"));
+        int adversaryPort = fireHandler.parseAdversaryPort(adversaryUrl);
+        fireHandler.randomFire(myPort, adversaryPort);
     }
 }
